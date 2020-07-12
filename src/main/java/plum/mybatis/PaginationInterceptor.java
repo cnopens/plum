@@ -16,12 +16,6 @@
 
 package plum.mybatis;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Properties;
-import javax.xml.bind.PropertyException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.logging.Log;
@@ -30,16 +24,18 @@ import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import plum.utils.page.PageQuery;
 import plum.utils.page.Pager;
 import plum.utils.reflex.Reflections;
+
+import javax.xml.bind.PropertyException;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * <p>
@@ -124,8 +120,7 @@ public class PaginationInterceptor implements Interceptor, Serializable {
 		//the need for paging intercept.
 		boolean interceptor = ms.getId().matches(_sql_regex);
 		//obtain paging information.
-		final PageQuery pageQuery = interceptor ? PagingParametersFinder.getInstance().findCriteria(parameter) :
-				new PageQuery(PageQuery.DEFAULT_PAGE_SIZE);
+		final PageQuery pageQuery = interceptor ? PagingParametersFinder.getInstance().findCriteria(parameter):new PageQuery(PageQuery.DEFAULT_PAGE_SIZE);
 		if (interceptor) {
 			PAGINATION_CRITERIA_THREAD_LOCAL.set(pageQuery);
 		}

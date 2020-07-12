@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class PageQuery implements java.io.Serializable {
 	private static final long serialVersionUID = -8000900575354501298L;
+    public static final int DEFAULT_PAGE_SIZE = 15;
 	/** 页数 */
 	private int page;
 	/** 分页大小 */

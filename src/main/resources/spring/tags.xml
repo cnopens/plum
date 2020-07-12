@@ -24,7 +24,7 @@
 	<bean id="blockDirectory" class="plum.freemarker.BlockDirective"/>
 	<bean id="overrideDirectory" class="plum.freemarker.OverrideDirective"/>
 	<bean id="extendsDirectory" class="plum.freemarker.ExtendsDirective"/>
-	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+<!--	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>-->
 	<!--Shiro标签-->
 	<bean id="shiroTag" class="plum.freemarker.shiro.ShiroTags"/>
 
